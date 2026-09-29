@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Propuesta INSTALCOM</title>
+<meta name="description" content="Pre-diagnóstico, Personal y asistencia, y Gestión y evidencias de obra — cotización para INSTALCOM SAS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f6fb; --surface:#ffffff; --surface-2:#eeecf7;
+    --ink:#1c1832; --ink-soft:#5b5578; --ink-faint:#8a84a8;
+    --line:#e1dfec; --line-strong:#cac6de;
+    --brand:#29235c; --brand-deep:#1c1842; --brand-mid:#4a3f9e; --brand-fg:#ffffff;
+    --brand-soft:#eae9f6; --brand-soft-fg:#29235c;
+    --accent:#f9d900; --accent-ink:#241f0a; --accent-deep:#8c7600;
+    --good-bg:#e4f5ea; --good-fg:#12603a;
+    --warn-bg:#fff7d6; --warn-line:#f9d900; --warn-fg:#5c4a00;
+    --shadow-1:0 1px 2px rgb(41 35 92/.06), 0 1px 3px rgb(41 35 92/.05);
+    --shadow-2:0 12px 32px rgb(41 35 92/.14), 0 2px 8px rgb(41 35 92/.06);
+    --radius-s:10px; --radius-m:16px; --radius-l:24px;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#100e22; --surface:#1b1735; --surface-2:#241f45;
+      --ink:#ece9f7; --ink-soft:#b3aed0; --ink-faint:#7d759e;
+      --line:#332c57; --line-strong:#443c6e;
+      --brand:#8d84e0; --brand-deep:#6f66c9; --brand-mid:#a79ded; --brand-fg:#14122a;
+      --brand-soft:#262052; --brand-soft-fg:#c9c4f5;
+      --accent:#f9d900; --accent-ink:#241f0a; --accent-deep:#f2ce33;
+      --good-bg:#123324; --good-fg:#7fdca3;
+      --warn-bg:#2e2708; --warn-line:#f9d900; --warn-fg:#f3d878;
+      --shadow-1:0 1px 2px rgb(0 0 0/.4);
+      --shadow-2:0 16px 40px rgb(0 0 0/.55);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#100e22; --surface:#1b1735; --surface-2:#241f45;
+    --ink:#ece9f7; --ink-soft:#b3aed0; --ink-faint:#7d759e;
+    --line:#332c57; --line-strong:#443c6e;
+    --brand:#8d84e0; --brand-deep:#6f66c9; --brand-mid:#a79ded; --brand-fg:#14122a;
+    --brand-soft:#262052; --brand-soft-fg:#c9c4f5;
+    --accent:#f9d900; --accent-ink:#241f0a; --accent-deep:#f2ce33;
+    --good-bg:#123324; --good-fg:#7fdca3;
+    --warn-bg:#2e2708; --warn-line:#f9d900; --warn-fg:#f3d878;
+    --shadow-1:0 1px 2px rgb(0 0 0/.4);
+    --shadow-2:0 16px 40px rgb(0 0 0/.55);
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Open Sans",system-ui,sans-serif; font-size:16px; line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:"Montserrat",system-ui,sans-serif; color:var(--ink); margin:0; letter-spacing:-.01em; text-wrap:balance}
+  p{margin:0 0 1em}
+  ul{margin:0; padding:0}
+  a{color:var(--brand-mid)}
+  .tab{font-variant-numeric:tabular-nums}
+  ::selection{background:var(--accent); color:var(--accent-ink)}
+  img{max-width:100%}
+
+  .wrap{max-width:900px; margin-inline:auto; padding-inline:20px}
+  .wrap-wide{max-width:1080px; margin-inline:auto; padding-inline:20px}
+  section{padding-block:56px}
+  @media (min-width:720px){ section{padding-block:76px} }
+
+  /* --- nav --- */
+  .nav{
+    position:sticky; top:0; z-index:40;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-in{max-width:1080px; margin-inline:auto; padding:12px 20px; display:flex; align-items:center; gap:14px}
+  .nav-mark{display:flex; align-items:center; gap:8px; font-family:"Montserrat"; font-weight:800; color:var(--brand); font-size:.95rem; white-space:nowrap}
+  .nav-mark .dot{width:9px; height:9px; border-radius:50%; background:var(--accent)}
+  .nav-links{display:none; gap:2px; margin-left:auto; overflow-x:auto}
+  .nav-links a{
+    font-size:.83rem; font-weight:600; color:var(--ink-soft); text-decoration:none;
+    padding:8px 12px; border-radius:99px; white-space:nowrap;
+  }
+  .nav-links a:hover{color:var(--brand); background:var(--surface-2)}
+  @media (min-width:760px){ .nav-links{display:flex} }
+  .nav-cta{
+    margin-left:auto; font-size:.82rem; font-weight:700; color:var(--brand-fg); background:var(--brand);
+    padding:9px 16px; border-radius:99px; text-decoration:none; white-space:nowrap;
+  }
+  @media (min-width:760px){ .nav-cta{margin-left:0} }
+
+  /* --- hero --- */
+  .hero{
+    background:linear-gradient(175deg, var(--brand-deep), var(--brand) 70%);
+    color:#fff; position:relative; overflow:hidden; padding-block:52px 64px;
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+    background:
+      radial-gradient(480px 320px at 88% -10%, rgb(249 217 0/.14), transparent 60%),
+      radial-gradient(600px 420px at -10% 110%, rgb(255 255 255/.06), transparent 60%);
+  }
+  .hero-in{position:relative}
+  .kicker{
+    display:inline-flex; align-items:center; gap:8px; font-size:.78rem; font-weight:700;
+    letter-spacing:.06em; color:#d8d4f5; margin-bottom:18px;
+  }
+  .kicker b{color:var(--accent); font-weight:800}
+  .hero h1{color:#fff; font-size:clamp(1.9rem,4.6vw,3.05rem); font-weight:800; line-height:1.12; max-width:15ch}
+  .hero p.lede{color:#d8d4f5; font-size:1.05rem; max-width:56ch; margin-top:18px}
+  .hero-stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px; background:rgb(255 255 255/.14); border-radius:var(--radius-m); overflow:hidden; margin-top:36px; border:1px solid rgb(255 255 255/.14)}
+  .hstat{background:rgb(20 16 46/.35); padding:18px 20px}
+  .hstat .v{font-family:"Montserrat"; font-weight:800; font-size:1.5rem; color:#fff}
+  .hstat .l{font-size:.8rem; color:#c9c4ea; margin-top:2px}
+
+  /* --- generic section head --- */
+  .shead{max-width:640px; margin-bottom:34px}
+  .snum{font-family:"Montserrat"; font-weight:800; font-size:.78rem; color:var(--brand-mid); letter-spacing:.04em; margin-bottom:8px; display:block}
+  .shead h2{font-size:clamp(1.4rem,3vw,1.9rem)}
+  .shead p{color:var(--ink-soft); margin-top:10px; font-size:1.02rem}
+
+  /* --- summary cards --- */
+  .sum-grid{display:grid; gap:14px; grid-template-columns:1fr}
+  @media (min-width:640px){ .sum-grid{grid-template-columns:repeat(3,1fr)} }
+  .sum-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m);
+    padding:22px; box-shadow:var(--shadow-1); display:flex; flex-direction:column; gap:10px;
+  }
+  .sum-card .tag{align-self:flex-start; font-size:.72rem; font-weight:800; letter-spacing:.03em; color:var(--brand-soft-fg); background:var(--brand-soft); padding:4px 10px; border-radius:99px}
+  .sum-card h3{font-size:1.05rem; line-height:1.3}
+  .sum-card .price{font-family:"Montserrat"; font-weight:800; font-size:1.5rem; color:var(--brand); margin-top:auto}
+  .sum-card .dur{font-size:.85rem; color:var(--ink-faint)}
+  .sum-total{
+    margin-top:16px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px;
+    background:var(--brand); color:var(--brand-fg); border-radius:var(--radius-m); padding:20px 24px;
+  }
+  .sum-total .lab{font-size:.85rem; opacity:.85}
+  .sum-total .amt{font-family:"Montserrat"; font-weight:800; font-size:1.7rem}
+  .sum-total .net{font-size:.85rem; opacity:.9; margin-top:2px}
+
+  .kpi-row{display:grid; gap:14px; grid-template-columns:1fr; margin-top:20px}
+  @media (min-width:560px){ .kpi-row{grid-template-columns:1fr 1fr} }
+  .kpi{border:1px solid var(--line); border-radius:var(--radius-m); padding:18px 20px; background:var(--surface)}
+  .kpi .v{font-family:"Montserrat"; font-weight:800; font-size:1.4rem; color:var(--brand)}
+  .kpi .l{color:var(--ink-soft); font-size:.88rem; margin-top:2px}
+
+  /* --- flow spine --- */
+  .flow{position:relative; margin-top:44px}
+  .flow-track{display:grid; grid-template-columns:1fr; gap:0; position:relative}
+  @media (min-width:860px){ .flow-track{grid-template-columns:repeat(6,1fr)} }
+  .fnode{position:relative; padding:0 14px 28px; border-left:2px solid var(--line-strong)}
+  @media (min-width:860px){
+    .fnode{padding:34px 12px 0; border-left:none; border-top:2px solid var(--line-strong)}
+  }
+  .fnode .dot{
+    position:absolute; left:-7px; top:0; width:12px; height:12px; border-radius:50%;
+    background:var(--surface); border:2px solid var(--brand-mid);
+  }
+  @media (min-width:860px){ .fnode .dot{left:0; top:-7px} }
+  .fnode .fno{font-family:"Montserrat"; font-weight:800; font-size:.72rem; color:var(--brand-mid); letter-spacing:.03em}
+  .fnode h4{font-size:.92rem; margin-top:6px; line-height:1.3}
+  .fnode p{font-size:.83rem; color:var(--ink-soft); margin-top:6px}
+  .fnode .cov{
+    display:inline-block; margin-top:10px; font-size:.72rem; font-weight:800; color:var(--accent-ink);
+    background:var(--accent); padding:3px 9px; border-radius:99px;
+  }
+  .flow-legend{display:flex; flex-wrap:wrap; gap:16px; margin-top:8px; font-size:.82rem; color:var(--ink-soft)}
+  .flow-legend b{color:var(--ink)}
+
+  /* --- entrega card --- */
+  .ent{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-l);
+    padding:26px; margin-top:18px; box-shadow:var(--shadow-1);
+  }
+  .ent-head{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:14px}
+  .ent-head h3{font-size:1.18rem}
+  .ent-head .price{font-family:"Montserrat"; font-weight:800; color:var(--brand); font-size:1.15rem; white-space:nowrap}
+  .ent-when{font-size:.82rem; color:var(--ink-faint); margin-top:-8px; margin-bottom:14px}
+  .ent-grid{display:grid; gap:16px; grid-template-columns:1fr}
+  @media (min-width:640px){ .ent-grid{grid-template-columns:1fr 1fr} }
+  .ent-item b{display:block; font-size:.83rem; color:var(--brand-mid); font-weight:700; margin-bottom:3px}
+  .ent-item p{font-size:.92rem; color:var(--ink-soft); margin:0}
+
+  /* --- callout / alert box --- */
+  .box{
+    border:1px solid var(--line); border-left:4px solid var(--warn-line); background:var(--warn-bg);
+    color:var(--warn-fg); border-radius:var(--radius-m); padding:18px 20px; margin-top:20px; font-size:.94rem;
+  }
+  .box b{color:var(--ink)}
+  .box.plain{background:var(--surface-2); border-left-color:var(--brand-mid); color:var(--ink-soft)}
+
+  /* --- simple table --- */
+  .tbl{width:100%; border-collapse:collapse; margin-top:8px; font-size:.92rem}
+  .tbl th{text-align:left; font-size:.76rem; font-weight:700; color:var(--ink-faint); padding:8px 10px; border-bottom:1px solid var(--line)}
+  .tbl td{padding:11px 10px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--ink-soft)}
+  .tbl td b{color:var(--ink)}
+  .tbl .r{text-align:right; white-space:nowrap}
+  .tbl tr.tot td{font-weight:800; color:var(--brand); background:var(--surface-2)}
+  .tbl-wrap{overflow-x:auto}
+
+  /* --- payment timeline --- */
+  .pay{position:relative; margin-top:36px; padding-left:22px; border-left:2px solid var(--line-strong)}
+  .pay-item{position:relative; padding-bottom:26px}
+  .pay-item:last-child{padding-bottom:0}
+  .pay-item .dot{position:absolute; left:-28px; top:2px; width:12px; height:12px; border-radius:50%; background:var(--brand); border:2px solid var(--surface); box-shadow:0 0 0 2px var(--brand)}
+  .pay-item .when{font-size:.78rem; font-weight:700; color:var(--brand-mid); letter-spacing:.02em}
+  .pay-item .what{display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; margin-top:2px}
+  .pay-item .what span:first-child{color:var(--ink); font-size:.95rem}
+  .pay-item .what b{font-family:"Montserrat"; color:var(--brand); font-size:.98rem; white-space:nowrap}
+  .pay-total{margin-top:6px; padding:16px 18px; background:var(--brand-soft); border-radius:var(--radius-m); display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px}
+  .pay-total span:first-child{color:var(--brand-soft-fg); font-weight:700; font-size:.92rem}
+  .pay-total b{font-family:"Montserrat"; font-size:1.15rem; color:var(--brand-soft-fg)}
+
+  /* --- conditions grid --- */
+  .cond-grid{display:grid; gap:18px 28px; grid-template-columns:1fr; margin-top:8px}
+  @media (min-width:700px){ .cond-grid{grid-template-columns:1fr 1fr} }
+  .cond{border-top:1px solid var(--line); padding-top:12px}
+  .cond b{display:block; font-size:.86rem; color:var(--ink); margin-bottom:4px}
+  .cond p{font-size:.87rem; color:var(--ink-soft); margin:0}
+
+  /* --- future modules --- */
+  .fut-grid{display:grid; gap:10px; grid-template-columns:1fr; margin-top:8px}
+  @media (min-width:640px){ .fut-grid{grid-template-columns:1fr 1fr} }
+  .fut{border:1px solid var(--line); border-radius:var(--radius-s); padding:14px 16px; background:var(--surface); display:flex; justify-content:space-between; gap:10px; align-items:flex-start}
+  .fut .name{font-weight:700; font-size:.88rem}
+  .fut .for{font-size:.8rem; color:var(--ink-soft); margin-top:2px}
+  .fut .range{font-size:.78rem; font-weight:700; color:var(--brand-mid); white-space:nowrap}
+
+  /* --- footer / cta --- */
+  .cta{background:var(--brand-deep); color:#fff; border-radius:var(--radius-l); padding:40px 32px; margin-top:8px; position:relative; overflow:hidden}
+  .cta::after{content:""; position:absolute; right:-40px; top:-40px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, rgb(249 217 0/.12), transparent 70%)}
+  .cta h2{color:#fff; font-size:1.5rem; max-width:26ch}
+  .cta p{color:#d8d4f5; margin-top:10px; max-width:52ch}
+  .cta-row{display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; align-items:center}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; font-weight:700; font-size:.9rem;
+    padding:12px 20px; border-radius:99px; text-decoration:none; cursor:pointer; border:1px solid transparent;
+    font-family:"Open Sans";
+  }
+  .btn-accent{background:var(--accent); color:var(--accent-ink)}
+  .btn-ghost{background:transparent; color:#fff; border-color:rgb(255 255 255/.35)}
+  .btn-ghost:hover{background:rgb(255 255 255/.08)}
+  .copyline{
+    display:inline-flex; align-items:center; gap:10px; background:rgb(255 255 255/.08); border:1px solid rgb(255 255 255/.18);
+    padding:10px 14px; border-radius:99px; font-size:.88rem; color:#fff;
+  }
+  .copyline button{background:none; border:none; color:var(--accent); font-weight:700; font-size:.82rem; cursor:pointer; font-family:inherit}
+  .foot-meta{display:flex; flex-wrap:wrap; gap:18px; margin-top:32px; font-size:.82rem; color:var(--ink-faint)}
+  .site-foot{padding:28px 20px 48px; text-align:center; font-size:.78rem; color:var(--ink-faint)}
+
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <span class="nav-mark"><span class="dot"></span>INSTALCOM · Propuesta</span>
+    <div class="nav-links">
+      <a href="#resumen">Resumen</a>
+      <a href="#flujo">El flujo</a>
+      <a href="#f0">Pre-diagnóstico</a>
+      <a href="#m1">Asistencia</a>
+      <a href="#m2">Evidencias de obra</a>
+      <a href="#pagos">Pagos</a>
+      <a href="#condiciones">Condiciones</a>
+    </div>
+    <a class="nav-cta" href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-in">
+    <span class="kicker">Propuesta comercial <b>·</b> INSTALCOM SAS, Caldas</span>
+    <h1>De la asignación del sitio al cierre de obra, sin WhatsApp.</h1>
+    <p class="lede">Tres movimientos para digitalizar la operación: un pre-diagnóstico corto con datos reales, la puesta en producción del módulo de personal y asistencia, y la gestión de obra completa — Planner, aprobación, seguimiento y cierre — en una sola plataforma.</p>
+    <div class="hero-stats">
+      <div class="hstat"><div class="v tab">$72.500.000</div><div class="l">inversión neta (COP, antes de IVA)</div></div>
+      <div class="hstat"><div class="v">3</div><div class="l">movimientos: F0, M1, M2</div></div>
+      <div class="hstat"><div class="v">~6 meses</div><div class="l">de firma a cierre de obra piloto</div></div>
+      <div class="hstat"><div class="v">Hoy</div><div class="l">M1 ya funciona: instalcom.vercel.app</div></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="resumen">
+  <div class="wrap">
+    <div class="shead">
+      <span class="snum">Resumen</span>
+      <h2>Un problema que INSTALCOM ya diagnosticó</h2>
+      <p>La gestión de cada obra —desde que se asigna el sitio hasta que se cierra— vive repartida entre correos, WhatsApp, Excel y PowerPoint armados a mano, con unas 30.000 fotos de evidencia al mes atrapadas en el chat. Esta propuesta digitaliza ese flujo de punta a punta sobre una plataforma que ya existe.</p>
+    </div>
+
+    <div class="sum-grid">
+      <div class="sum-card">
+        <span class="tag">F0</span>
+        <h3>Pre-diagnóstico de evidencias en obra</h3>
+        <span class="dur">3 semanas</span>
+        <div class="price tab">$14.000.000</div>
+      </div>
+      <div class="sum-card">
+        <span class="tag">M1</span>
+        <h3>Personal y asistencia — implementación</h3>
+        <span class="dur">4 semanas</span>
+        <div class="price tab">$16.500.000</div>
+      </div>
+      <div class="sum-card">
+        <span class="tag">M2</span>
+        <h3>Gestión y evidencias de obra</h3>
+        <span class="dur">12–14 semanas</span>
+        <div class="price tab">$56.000.000</div>
+      </div>
+    </div>
+
+    <div class="sum-total">
+      <div>
+        <div class="lab">Total cotizado (F0 + M1 + M2)</div>
+        <div class="amt tab">$86.500.000</div>
+      </div>
+      <div>
+        <div class="lab">Inversión neta</div>
+        <div class="amt tab">$72.500.000</div>
+        <div class="net">El pre-diagnóstico se descuenta en su totalidad de M2</div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi"><div class="v">3 toques</div><div class="l">por foto para el operario: obra, actividad, disparo</div></div>
+      <div class="kpi"><div class="v">Semana 7</div><div class="l">dos cuadrillas piloto ya no envían evidencia por WhatsApp</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="flujo" style="background:var(--surface-2)">
+  <div class="wrap-wide">
+    <div class="shead">
+      <span class="snum">El flujo digitalizado</span>
+      <h2>Las seis fases de INSTALCOM, cubiertas de punta a punta</h2>
+      <p>Alcance tomado directamente del documento de flujo de trabajo de INSTALCOM (ago-2026). Cada fase de su proceso queda cubierta por una entrega concreta de la plataforma.</p>
+    </div>
+
+    <div class="flow">
+      <div class="flow-track">
+        <div class="fnode"><span class="dot"></span><span class="fno">Fase 1</span><h4>Solicitud e incepción</h4><p>Planner, carpeta del proyecto, centro de costo, coordinador asignado.</p><span class="cov">E1</span></div>
+        <div class="fnode"><span class="dot"></span><span class="fno">Fase 2</span><h4>Planeación y aprobación</h4><p>Planos, presupuesto, cronograma y firma electrónica de aprobación.</p><span class="cov">E2</span></div>
+        <div class="fnode"><span class="dot"></span><span class="fno">Fase 3</span><h4>Inicio de obra</h4><p>Tipologías de cronograma, tareas, permisos SST, requisiciones.</p><span class="cov">E2</span></div>
+        <div class="fnode"><span class="dot"></span><span class="fno">Fase 4</span><h4>Seguimientos diarios</h4><p>Captura en campo ligada al cronograma. Cero WhatsApp.</p><span class="cov">E1</span></div>
+        <div class="fnode"><span class="dot"></span><span class="fno">Fase 5</span><h4>Seguimiento semanal</h4><p>Informe automático al Comité de Obra. Visitas de interventoría.</p><span class="cov">E2</span></div>
+        <div class="fnode"><span class="dot"></span><span class="fno">Fase 6</span><h4>Cierre de obra</h4><p>Dossier final, liberación firmada por el cliente.</p><span class="cov">E3</span></div>
+      </div>
+      <div class="flow-legend"><span><b>E1</b> Alta de obra y captura diaria</span><span><b>E2</b> Planeación, aprobación y seguimiento semanal</span><span><b>E3</b> IA, cierre de obra y KPIs</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="f0">
+  <div class="wrap">
+    <div class="shead">
+      <span class="snum">Movimiento 1 de 3</span>
+      <h2>F0 · Pre-diagnóstico de evidencias en obra</h2>
+      <p>Tres semanas de trabajo con datos reales de INSTALCOM, no un diagnóstico de escritorio. Convierte la hoja de ruta interna en un alcance cerrado, con arquitectura y precio fijo del Módulo 2.</p>
+    </div>
+
+    <div class="ent">
+      <div class="ent-head"><h3>Alcance</h3><span class="price tab">$14.000.000</span></div>
+      <div class="ent-when">3 semanas</div>
+      <div class="ent-grid">
+        <div class="ent-item"><b>Entrevistas de campo</b><p>Gerencia de operaciones, dos ingenieros residentes, dos supervisores, SST y talento humano — más un interventor del cliente final (EPM, Claro u otro) para fijar el formato de evidencia que exige.</p></div>
+        <div class="ent-item"><b>Visita a obra</b><p>Una visita a obra o a la planta de Caldas con dos cuadrillas: cómo se toma, se envía y se pierde hoy la evidencia.</p></div>
+        <div class="ent-item"><b>Muestreo real</b><p>2.000 a 3.000 fotos reales de los chats: tamaño promedio, duplicadas, sin contexto, porcentaje útil y gigabytes recuperables.</p></div>
+        <div class="ent-item"><b>Taxonomía y mapa</b><p>Evidencias por línea de negocio (radiobases, fibra, subestaciones, ITS, estructuras, obra civil) y mapa del proceso actual y objetivo.</p></div>
+        <div class="ent-item"><b>Prueba de concepto de IA</b><p>Auto-etiquetado sobre 200 fotos reales: precisión medida por categoría y costo por foto.</p></div>
+        <div class="ent-item"><b>Cierre del alcance</b><p>Arquitectura, backlog priorizado, calendario por hitos y presupuesto cerrado del Módulo 2 — más la cifra cerrada de infraestructura y del fee de soporte.</p></div>
+      </div>
+    </div>
+
+    <div class="box"><b>Es un plus, no un costo adicional.</b> Se paga en un único pago del 100 % al inicio y, al contratar el Módulo de evidencias, sus $14.000.000 se descuentan en su totalidad del valor de ese módulo. Si INSTALCOM decide no continuar, conserva todos los entregables.</div>
+  </div>
+</section>
+
+<section id="m1" style="background:var(--surface-2)">
+  <div class="wrap">
+    <div class="shead">
+      <span class="snum">Movimiento 2 de 3</span>
+      <h2>M1 · Personal y asistencia — implementación</h2>
+      <p>Puesta en producción del módulo que ya funciona hoy en <a href="https://instalcom.vercel.app" target="_blank" rel="noopener">instalcom.vercel.app</a>: tablero del día, empleados, áreas, turnos, novedades con aprobación, historial de marcaciones, reportes y usuarios con cuatro roles.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <tr><th>Componente</th><th class="r">Valor</th></tr>
+        <tr><td>Licencia perpetua del núcleo de la plataforma y del módulo construido, código fuente incluido</td><td class="r tab">$4.500.000</td></tr>
+        <tr><td>Implementación: producción en cuentas de INSTALCOM, carga de nómina y turnos, integración del biométrico, avisos por WhatsApp Business, capacitación, tres meses de operación</td><td class="r tab">$12.000.000</td></tr>
+        <tr class="tot"><td>Total M1</td><td class="r tab">$16.500.000</td></tr>
+      </table>
+    </div>
+    <div class="box plain">Modelo adicional de biométrico: $900.000–$1.500.000 según el equipo. Retorno esperado: con 100–150 operarios, recuperar el 1–2 % de horas pagadas no trabajadas equivale a $3–7 millones al mes — la inversión se recupera en dos a cuatro meses.</div>
+  </div>
+</section>
+
+<section id="m2">
+  <div class="wrap">
+    <div class="shead">
+      <span class="snum">Movimiento 3 de 3</span>
+      <h2>M2 · Gestión y evidencias de obra</h2>
+      <p>Digitaliza el flujo completo de una obra: de la asignación del sitio a la liberación firmada por el cliente. Cero grupos de WhatsApp para seguimiento de obra. Tres entregas, cada una usable y aceptada por acta.</p>
+    </div>
+
+    <div class="ent">
+      <div class="ent-head"><h3>E1 · Alta de obra y captura diaria</h3><span class="price tab">$22.000.000</span></div>
+      <div class="ent-when">3 semanas + 2 de piloto</div>
+      <div class="ent-grid">
+        <div class="ent-item"><b>Alta automática</b><p>Registrar un proyecto desde la web o el celular crea solo el Planner, la carpeta (SharePoint de INSTALCOM o almacenamiento propio), el centro de costo y la asignación de coordinador, con aviso en minutos.</p></div>
+        <div class="ent-item"><b>Captura en tres toques</b><p>App instalable en Android e iOS, sin tienda de aplicaciones: obra, frente y actividad. Funciona sin señal y sincroniza sola.</p></div>
+        <div class="ent-item"><b>Ligada al cronograma</b><p>Cada evidencia se asocia a la actividad programada ese día y, si aplica, al permiso SST correspondiente.</p></div>
+        <div class="ent-item"><b>Calidad de datos</b><p>Compresión automática (~1 MP), detección de duplicados, GPS y hora, galería web con filtros, catálogo administrable.</p></div>
+        <div class="ent-item"><b>Adopción medida</b><p>Contador de adopción por cuadrilla, manual de una página, video de tres minutos, piloto con dos cuadrillas.</p></div>
+        <div class="ent-item"><b>Rol de solo lectura</b><p>Acceso de consulta para quien solo necesita ver el avance, sin permisos de edición.</p></div>
+      </div>
+    </div>
+
+    <div class="ent">
+      <div class="ent-head"><h3>E2 · Planeación, aprobación y seguimiento semanal</h3><span class="price tab">$24.000.000</span></div>
+      <div class="ent-when">5 semanas</div>
+      <div class="ent-grid">
+        <div class="ent-item"><b>Planeación y firma</b><p>Carga de planos, presupuesto y cronograma; solicitud de firma electrónica al cliente por correo; validación automática que genera el acta y pasa el proyecto a Aprobado.</p></div>
+        <div class="ent-item"><b>Tareas y requisiciones</b><p>Tipologías de cronograma por proyecto, asignación de tareas con responsable y tiempo, solicitud automática de permisos SST, requisición (RN, RT, RS, RV, OP, OS) al sistema interno.</p></div>
+        <div class="ent-item"><b>Aprobación de evidencias</b><p>Flujo pendiente / revisada / aprobada / rechazada con historial inmutable, incluida la solicitud de visita de interventoría o recepción parcial de cliente.</p></div>
+        <div class="ent-item"><b>Tablero de avance</b><p>Por obra y frente, con tiempo de ciclo; notificaciones por correo y WhatsApp.</p></div>
+        <div class="ent-item"><b>Informe semanal automático</b><p>Fotos por fecha y tipo de actividad, generado solo y enviado al Comité de Obra Semanal — reemplaza pasar fotos de WhatsApp a PowerPoint.</p></div>
+        <div class="ent-item"><b>Migración y despliegue</b><p>Exportación CSV y ZIP/PDF por obra, muestra histórica de hasta 5.000 fotos, despliegue nacional con formador de formadores.</p></div>
+      </div>
+    </div>
+
+    <div class="ent">
+      <div class="ent-head"><h3>E3 · IA, cierre de obra y KPIs</h3><span class="price tab">$10.000.000</span></div>
+      <div class="ent-when">3 semanas</div>
+      <div class="ent-grid">
+        <div class="ent-item"><b>Auto-etiquetado</b><p>Por lotes cada noche: actividad, calidad de foto, sugerencia de hallazgo. Calibrado con 300 fotos reales, con acierto reportado por categoría.</p></div>
+        <div class="ent-item"><b>Alertas de EPP</b><p>Sugeridas por IA, siempre con validación humana obligatoria.</p></div>
+        <div class="ent-item"><b>Dossier de cierre</b><p>Al marcar el cierre, la plataforma arma el Site Folder: evidencias aprobadas y actas en un PDF/ZIP, con solicitud de liberación al cliente.</p></div>
+        <div class="ent-item"><b>Notificación contable</b><p>Al aceptar la liberación, se notifica a bodega y cuentas por pagar para que gestionen ese cierre en sus propios sistemas.</p></div>
+        <div class="ent-item"><b>Tablero de KPIs</b><p>Los cinco del diagnóstico: adopción, capacidad liberada, tiempo de ciclo, calidad de datos, tiempo de reporte de riesgos.</p></div>
+        <div class="ent-item"><b>Retención y transferencia</b><p>Política de retención de 24 meses; cierre y transferencia del proyecto.</p></div>
+      </div>
+    </div>
+
+    <div class="box"><b>Dos puntos a confirmar en el pre-diagnóstico</b>, sin costo adicional: (a) la firma de este módulo es una <b>firma simple</b> por correo con registro de aceptación (Ley 527 de 1999), no una firma digital certificada con validez notarial — si se necesita así, queda como módulo aparte; (b) la integración con SharePoint y con el sistema de requisiciones necesita accesos de INSTALCOM, pedidos en la primera semana de E2. Sin esos accesos, el módulo usa almacenamiento propio y la requisición queda como solicitud exportable.</div>
+  </div>
+</section>
+
+<section id="pagos" style="background:var(--surface-2)">
+  <div class="wrap">
+    <div class="shead">
+      <span class="snum">Calendario</span>
+      <h2>Forma de pago</h2>
+      <p>El pre-diagnóstico se paga en un único pago al inicio. El Módulo de evidencias se liquida sobre su valor neto de $42.000.000. Los demás pagos van contra acta de aceptación de cada hito.</p>
+    </div>
+
+    <div class="pay">
+      <div class="pay-item"><span class="dot"></span><div class="when">Octubre 2026 · a la firma</div><div class="what"><span>F0 · Pre-diagnóstico, único pago 100 %</span><b class="tab">$14.000.000</b></div></div>
+      <div class="pay-item"><span class="dot"></span><div class="when">Octubre 2026 · inicio 12 de octubre</div><div class="what"><span>M1 · 30 % al inicio</span><b class="tab">$4.950.000</b></div></div>
+      <div class="pay-item"><span class="dot"></span><div class="when">Noviembre 2026 · firma hasta el 13</div><div class="what"><span>M2 · 30 % de anticipo sobre el valor neto</span><b class="tab">$12.600.000</b></div></div>
+      <div class="pay-item"><span class="dot"></span><div class="when">Diciembre 2026</div><div class="what"><span>M1 · 60 % contra acta de producción</span><b class="tab">$9.900.000</b></div></div>
+      <div class="pay-item"><span class="dot"></span><div class="when">Diciembre 2026 · acta hacia el 18</div><div class="what"><span>M2 · 25 % contra acta de E1</span><b class="tab">$10.500.000</b></div></div>
+      <div class="pay-item"><span class="dot"></span><div class="when">Enero 2027</div><div class="what"><span>M1 · 10 % retención de garantía</span><b class="tab">$1.650.000</b></div></div>
+      <div class="pay-item"><span class="dot"></span><div class="when">Febrero 2027</div><div class="what"><span>M2 · 25 % contra acta de E2</span><b class="tab">$10.500.000</b></div></div>
+      <div class="pay-item"><span class="dot"></span><div class="when">Marzo 2027</div><div class="what"><span>M2 · 10 % contra acta de E3</span><b class="tab">$4.200.000</b></div></div>
+      <div class="pay-item"><span class="dot"></span><div class="when">Abril 2027</div><div class="what"><span>M2 · 10 % retención de garantía</span><b class="tab">$4.200.000</b></div></div>
+    </div>
+    <div class="pay-total"><span>Inversión neta total</span><b class="tab">$72.500.000</b></div>
+    <div class="box plain">Cada acta va precedida de 10 días hábiles de pruebas de usuario; sin observaciones escritas, la entrega se entiende aceptada. Pago a 15 días de la factura. Los retrasos en las entradas a cargo del cliente mueven fechas, no precios.</div>
+
+    <div class="shead" style="margin-top:52px">
+      <span class="snum">Después de la garantía</span>
+      <h2>Servicios recurrentes (opcionales)</h2>
+    </div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <tr><th>Servicio</th><th>Incluye</th><th class="r">Mensual</th></tr>
+        <tr><td><b>Soporte básico</b></td><td>Monitoreo, copias de seguridad, actualizaciones, corrección de errores</td><td class="r tab">$900.000</td></tr>
+        <tr><td><b>Soporte y evolución</b></td><td>Lo anterior más 10 horas mensuales de mejoras priorizadas</td><td class="r tab">$2.000.000</td></tr>
+        <tr><td><b>Infraestructura e IA</b></td><td>Vercel, Neon, Resend, almacenamiento y etiquetado por lotes, en cuentas de INSTALCOM</td><td class="r tab">$150.000–$300.000</td></tr>
+        <tr><td><b>WhatsApp Business</b></td><td>Costo por conversación de Meta, a cargo del cliente</td><td class="r tab">≈ $150.000</td></tr>
+      </table>
+    </div>
+    <div class="box plain">Estimado con el volumen declarado (30.000 fotos/mes). La cifra exacta, junto con el fee definitivo de soporte, se cierra en el pre-diagnóstico y no cambia en 12 meses salvo variación mayor al 15 % en tarifas del proveedor o en volumen real.</div>
+  </div>
+</section>
+
+<section id="condiciones">
+  <div class="wrap">
+    <div class="shead">
+      <span class="snum">Letra clara</span>
+      <h2>Condiciones</h2>
+    </div>
+    <div class="cond-grid">
+      <div class="cond"><b>Precios</b><p>Pesos colombianos antes de IVA; oferta válida 30 días. Precio fijo por fase con alcance cerrado; cambios por control de cambios escrito a $180.000/hora o como módulo con precio cerrado.</p></div>
+      <div class="cond"><b>Facturación</b><p>Como análisis, diseño, desarrollo e implementación de programas de informática y consultoría asociada.</p></div>
+      <div class="cond"><b>Propiedad intelectual</b><p>Cesión escrita de los derechos sobre lo específico de INSTALCOM (datos, taxonomía, reglas, configuración) y licencia perpetua no exclusiva, con código fuente, sobre el núcleo de la plataforma.</p></div>
+      <div class="cond"><b>Cuentas y datos</b><p>Repositorio, dominio y cuentas de nube a nombre de INSTALCOM desde el primer día. Exportación completa sin costo al terminar cualquier contrato.</p></div>
+      <div class="cond"><b>Garantía</b><p>Correctiva de 90 días desde cada acta (crítico 4h/24h, mayor 24h/72h). Los dos primeros meses tienen mesa de tickets dedicada, con prioridad sobre trabajo nuevo.</p></div>
+      <div class="cond"><b>Datos personales</b><p>Tratamiento conforme a la Ley 1581 de 2012. Fotos con retención de 24 meses por defecto y borrado a solicitud.</p></div>
+      <div class="cond"><b>Supuestos</b><p>Líder de proyecto con 4h/semana, dos cuadrillas piloto, nómina y accesos en la primera semana. Para E2: accesos a Microsoft 365/SharePoint y al sistema de requisiciones.</p></div>
+      <div class="cond"><b>Exclusiones</b><p>Migración masiva de WhatsApp, detector propio de EPP, curva S, integraciones con ERP/nómina, firma digital certificada, hardware y celulares, cierre contable (el módulo solo notifica).</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="futuro" style="background:var(--surface-2)">
+  <div class="wrap">
+    <div class="shead">
+      <span class="snum">Hoja de ruta</span>
+      <h2>Módulos futuros</h2>
+      <p>Fuera de esta cotización, para cuando INSTALCOM decida avanzar.</p>
+    </div>
+    <div class="fut-grid">
+      <div class="fut"><div><div class="name">Visión artificial propia</div><div class="for">Detector entrenado con fotos de INSTALCOM para EPP y hallazgos</div></div><div class="range">$30–60M</div></div>
+      <div class="fut"><div><div class="name">Tablero gerencial y BI</div><div class="for">Power BI o Looker Studio sobre personal, evidencias y riesgos</div></div><div class="range">$8–15M</div></div>
+      <div class="fut"><div><div class="name">Curva S y BI de cronograma</div><div class="for">Gantt visual, integración con MS Project o Primavera</div></div><div class="range">$12–22M</div></div>
+      <div class="fut"><div><div class="name">SST / HSEQ digital</div><div class="for">Permisos de trabajo, listas de chequeo, inspecciones</div></div><div class="range">$15–30M</div></div>
+      <div class="fut"><div><div class="name">Portal del cliente final</div><div class="for">Acceso de solo lectura para EPM, Claro y otros</div></div><div class="range">$10–20M</div></div>
+      <div class="fut"><div><div class="name">Inventario por obra</div><div class="for">Materiales y herramienta por cuadrilla, con foto</div></div><div class="range">$15–30M</div></div>
+      <div class="fut"><div><div class="name">Entrada por WhatsApp Business</div><div class="for">Recepción automática para quien no adopte la app</div></div><div class="range">$6–12M</div></div>
+      <div class="fut"><div><div class="name">Firma digital certificada</div><div class="for">Reemplaza la firma simple del M2, con validez plena</div></div><div class="range">$8–15M</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <div class="cta">
+      <h2>¿Seguimos con el pre-diagnóstico?</h2>
+      <p>Tres semanas, datos reales de INSTALCOM, y un precio cerrado del Módulo de evidencias antes de comprometerse con él. Oferta válida 30 días desde el 28 de septiembre de 2026.</p>
+      <div class="cta-row">
+        <a class="btn btn-accent" href="https://instalcom.vercel.app" target="_blank" rel="noopener">Ver el módulo de asistencia en vivo</a>
+        <span class="copyline" id="mailline">sebastian689@gmail.com <button type="button" onclick="
+          (function(btn){
+            var text='sebastian689@gmail.com';
+            function done(){ var o=btn.textContent; btn.textContent='Copiado'; setTimeout(function(){btn.textContent=o;},1500); }
+            if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done).catch(function(){ done(); }); } else { done(); }
+          })(this)
+        ">Copiar</button></span>
+      </div>
+      <div class="foot-meta">
+        <span>Sebastián Masmela · consultor</span>
+        <span>Preparada para INSTALCOM SAS · Gerencia de operaciones · Caldas, Antioquia</span>
+        <span>28 de septiembre de 2026 · válida 30 días</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">Documento privado de cotización, preparado para INSTALCOM SAS. No indexar.</footer>
+
+</body>
+</html>
